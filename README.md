@@ -1,5 +1,9 @@
 # Clean Architecture Template
 
+![License](https://img.shields.io/github/license/DyegoMaas/CleanArchitectureTemplate.svg)
+![tests](https://github.com/DyegoMaas/CleanArchitectureTemplate/workflows/build-and-test/badge.svg)
+[![codecov](https://codecov.io/gh/DyegoMaas/CleanArchitectureTemplate/branch/main/graph/badge.svg?token=IPBG3BP2D8)](https://codecov.io/gh/DyegoMaas/CleanArchitectureTemplate)
+
 **This repository aims to be as easy to replicate as possible.** It should turn the process of creating new applications based in this template a no-brainer, very smooth.
 
 For the replication process, it will work in tandem with another of my OSS projects, [Replicante](https://github.com/DyegoMaas/replicante), which may receive upgrades in the near future to better support replication of remote repositories.
