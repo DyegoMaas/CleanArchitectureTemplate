@@ -14,6 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{25ACB4B6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.Tests", "tests\CleanArchitectureTemplate.Tests\CleanArchitectureTemplate.Tests.csproj", "{2E6DA747-D698-4327-84AF-1B392A8044A9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{4A40B891-3475-4600-9D94-DECA177DFB1C}"
+ProjectSection(SolutionItems) = preProject
+	Dockerfile = Dockerfile
+	README.md = README.md
+	.dockerignore = .dockerignore
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
