@@ -16,6 +16,8 @@ The application will use a very pragmatic and opinionated version of the Clean A
 
 Code coverage will have to be high, but the focus will be on a good mutation score.
 
-Replication should be easy. This template will serve as a test subject for better understanding the concept of _self-replicating repositories_.
+Replication should be easy. 
+
+This template will serve as a test subject for better understanding the concept of _replicable repositories_.
 
 
