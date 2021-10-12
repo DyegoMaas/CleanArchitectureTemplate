@@ -1,0 +1,7 @@
+version: "3"
+services:
+  mongo-in-memory:
+    image: mongo:5.0.3-focal
+    tmpfs: /data/db
+    ports:
+      - "27018:27017"
