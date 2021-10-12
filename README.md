@@ -20,4 +20,10 @@ Replication should be easy.
 
 This template will serve as a test subject for better understanding the concept of _replicable repositories_.
 
+## Examples
+
+This project comes packed with examples which implement services for a fictional dystopian library called Encyclopedia Galactica.
+
+The project specification can be found in the [docs here](docs/ProjectSpecifications.md).
+
 
