@@ -1,9 +1,7 @@
-using System.Linq;
 using System.Threading.Tasks;
 using CleanArchitectureTemplate.Application.Books.AddBook;
 using CleanArchitectureTemplate.Domain.Entities;
 using FluentAssertions;
-using MediatR;
 using Xunit;
 
 namespace CleanArchitectureTemplate.Tests.Application
@@ -32,10 +30,10 @@ namespace CleanArchitectureTemplate.Tests.Application
                 GalacticYear = 10_001
             };
 
-            await Handle<AddBookRequest, Unit>(addBookRequest);
-            
-            var book = SideEffects.GetDocuments<Book>().First();
-            book.Name.Should().Be(addBookRequest.Name);
+            var response = await Handle<AddBookRequest, AddBookResponse>(addBookRequest);
+
+            var book = SideEffects.GetDocument<Book>(x => x.GalacticRegistryId == response.GalacticRegistryId);
+            book.Should().BeEquivalentTo(addBookRequest);
         }
     }
 }

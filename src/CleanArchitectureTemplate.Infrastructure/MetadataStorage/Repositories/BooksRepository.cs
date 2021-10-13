@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Repositories
 {
-    public class BooksRepository : MongoDbBaseRepository<Book>, IBooksRepository
+    public class BooksRepository : MongoDbRepository<Book>, IBooksRepository
     {
         public BooksRepository(IMongoDatabase mongoDatabase) : base(mongoDatabase)
         {

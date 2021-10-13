@@ -1,24 +1,30 @@
-﻿using CleanArchitectureTemplate.Domain.ValueObjects;
+﻿using System;
+using CleanArchitectureTemplate.Domain.ValueObjects;
 
 namespace CleanArchitectureTemplate.Domain.Entities
 {
-    public class Book
+    public class Book : Entity
     {
-        public string Name { get; }
-        public string Description { get; }
-        public string Author { get; }
-        public GalacticBody Origin { get; }
-        public string Publisher { get; }
-        public int GalacticYear { get; }
-
-        public Book(string name, string description, string author, GalacticBody origin, string publisher, int galacticYear)
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Author { get; set; }
+        public GalacticBody Origin { get; set; }
+        public string Publisher { get; set; }
+        public int GalacticYear { get; set; }
+        public Guid GalacticRegistryId { get; set; }
+        
+        public static Book Create(string name, string description, string author, GalacticBody origin, string publisher, int galacticYear)
         {
-            Name = name;
-            Description = description;
-            Author = author;
-            Origin = origin;
-            Publisher = publisher;
-            GalacticYear = galacticYear;
+            return new Book
+            {
+                Name = name,
+                Description = description,
+                Author = author,
+                Origin = origin,
+                Publisher = publisher,
+                GalacticYear = galacticYear,
+                GalacticRegistryId = Guid.NewGuid()
+            };
         }
     }
 }

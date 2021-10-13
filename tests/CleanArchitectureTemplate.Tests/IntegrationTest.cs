@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using CleanArchitectureTemplate.Application.Common.Behaviors;
+using CleanArchitectureTemplate.Infrastructure;
+using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
+using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Serialization;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
 namespace CleanArchitectureTemplate.Tests
 {
-    public abstract class IntegrationTest
+    public abstract class IntegrationTest: IDisposable
     {
-        private IMongoDatabase _database;
         private readonly ServiceCollection _serviceCollection;
         private readonly Lazy<IServiceProvider> _serviceProvider;
+        private InMemoryTestDatabase _inMemoryTestDatabase;
 
         private static IServiceProvider GetServiceProvider(IServiceCollection serviceCollection)
         {
@@ -23,6 +28,12 @@ namespace CleanArchitectureTemplate.Tests
 
         protected TestSideEffects SideEffects { get; private set; }
 
+        static IntegrationTest()
+        {
+            MappingLoader.LoadClassMappings();
+            SerializationConventions.SetConventions();
+        }
+
         protected IntegrationTest()
         {
             _serviceCollection = new ServiceCollection();
@@ -31,17 +42,20 @@ namespace CleanArchitectureTemplate.Tests
             _serviceProvider = new Lazy<IServiceProvider>(() => GetServiceProvider(_serviceCollection));
         }
 
-        private static void InstallDependencies(ServiceCollection serviceCollection)
+        private void InstallDependencies(ServiceCollection services)
         {
+            services.AddMediatR(typeof(RequestValidationBehavior<,>).Assembly);
+            services.AddSingleton(provider => new TestMongoDatabaseFactory(_inMemoryTestDatabase).GetDatabase());
+            services.AddRepositories();
         }
 
         protected void RebuildDatabase()
         {
-            var inMemoryTestDatabase = new InMemoryTestDatabase(databaseName: Guid.NewGuid().ToString());
-            inMemoryTestDatabase.Drop();
-            _database = inMemoryTestDatabase.GetDatabase();
+            _inMemoryTestDatabase = new InMemoryTestDatabase(databaseName: Guid.NewGuid().ToString());
+            _inMemoryTestDatabase.Drop();
 
-            SideEffects = new TestSideEffects(_database);
+            var database = _inMemoryTestDatabase.GetDatabase();
+            SideEffects = new TestSideEffects(database);
         }
         
         [DebuggerStepThrough]
@@ -55,23 +69,25 @@ namespace CleanArchitectureTemplate.Tests
 
         private class InMemoryTestDatabase
         {
-            private const string LocalhostInMemoryConnectionString = "mongodb://localhost:27018"; // TODO load from configuration
-            private readonly string _databaseName;
+            public const string LocalhostInMemoryConnectionString = "mongodb://localhost:27018"; // TODO load from configuration
+            public string DatabaseName { get; }
 
             public InMemoryTestDatabase(string databaseName)
             {
-                _databaseName = databaseName;
+                DatabaseName = databaseName;
             }
 
             public void Drop()
             {
                 var mongoClient = GetMongoClient(LocalhostInMemoryConnectionString);
-                mongoClient.DropDatabase(_databaseName);
+                mongoClient.DropDatabase(DatabaseName);
             }
             public IMongoDatabase GetDatabase()
             {
                 var mongoClient = GetMongoClient(LocalhostInMemoryConnectionString);
-                var mongoDatabase = mongoClient.GetDatabase(_databaseName);
+                var mongoDatabase = mongoClient.GetDatabase(DatabaseName);
+                
+                MappingLoader.EnsureIndices(mongoDatabase);
 
                 return mongoDatabase;
             }
@@ -88,11 +104,40 @@ namespace CleanArchitectureTemplate.Tests
                 _database = database;
             }
 
-            public IEnumerable<T> GetDocuments<T>()
+            public IEnumerable<TDocument> GetDocuments<TDocument>()
             {
-                var collection = _database.GetCollection<T>(typeof(T).Name); // TODO resolve to the correct name
+                var collection = GetCollectionFor<TDocument>();
                 return collection.Find(x => true).ToEnumerable();
             }
+
+            public TDocument GetDocument<TDocument>(Expression<Func<TDocument, bool>> filter)
+            {
+                var collection = GetCollectionFor<TDocument>();
+                return collection.Find(filter).FirstOrDefault();
+            }
+
+            private IMongoCollection<TDocument> GetCollectionFor<TDocument>()
+            {
+                var collectionName = CollectionNamesHelper.CollectionNameFor<TDocument>();
+                return _database.GetCollection<TDocument>(collectionName);
+            }
+        }
+        
+        private class TestMongoDatabaseFactory : IMongoDatabaseFactory
+        {
+            private readonly InMemoryTestDatabase _inMemoryTestDatabase;
+
+            public TestMongoDatabaseFactory(InMemoryTestDatabase inMemoryTestDatabase)
+            {
+                _inMemoryTestDatabase = inMemoryTestDatabase;
+            }
+
+            public IMongoDatabase GetDatabase() => _inMemoryTestDatabase.GetDatabase();
+        }
+
+        public void Dispose()
+        {
+            _inMemoryTestDatabase.Drop();
         }
     }
 }

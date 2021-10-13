@@ -7,7 +7,7 @@ using MediatR;
 
 namespace CleanArchitectureTemplate.Application.Books.AddBook
 {
-    public class AddBookRequest : IRequest<Unit>
+    public class AddBookRequest : IRequest<AddBookResponse>
     {
         public string Name { get; set; }
         public string Author { get; set; }
@@ -23,7 +23,7 @@ namespace CleanArchitectureTemplate.Application.Books.AddBook
         }
     }
 
-    public class AddBookRequestHandler : IRequestHandler<AddBookRequest, Unit>
+    public class AddBookRequestHandler : IRequestHandler<AddBookRequest, AddBookResponse>
     {
         private readonly IBooksRepository _booksRepository;
 
@@ -32,9 +32,9 @@ namespace CleanArchitectureTemplate.Application.Books.AddBook
             _booksRepository = booksRepository;
         }
 
-        public async Task<Unit> Handle(AddBookRequest request, CancellationToken cancellationToken)
+        public async Task<AddBookResponse> Handle(AddBookRequest request, CancellationToken cancellationToken)
         {
-            var book = new Book(
+            var book = Book.Create(
                 name: request.Name,
                 description: request.Description,
                 author: request.Author,
@@ -44,7 +44,10 @@ namespace CleanArchitectureTemplate.Application.Books.AddBook
             );
             await _booksRepository.AddBook(book);
             
-            return new Unit();
+            return new AddBookResponse
+            {
+                GalacticRegistryId = book.GalacticRegistryId
+            };
         }
     }
 }
