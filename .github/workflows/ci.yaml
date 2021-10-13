@@ -35,6 +35,10 @@ jobs:
       - name: Build
         run: dotnet build -c Debug
 
+      - uses: isbang/compose-action@v1.0.0
+        with:
+          compose-file: './docker-compose-tests.yml'
+
       - name: Test
         run: dotnet test -c Debug --no-build -l trx --verbosity=normal
         
