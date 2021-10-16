@@ -38,33 +38,16 @@ namespace CleanArchitectureTemplate.Infrastructure
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            var repositories = Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(t => typeof(IMongoDbRepository).IsAssignableFrom(t))
-                .Where(t => !t.IsAbstract && !t.IsInterface)
-                .SelectMany(concreteType =>
-                {
-                    var interfaces = concreteType.GetInterfaces()
-                        .Where(i => i != typeof(IMongoDbRepository))
-                        .Select(i => (abstractType: i, concreteType: concreteType))
-                        .Union(new [] {(abstractType: concreteType, concreteType: concreteType)});
-                    return interfaces;
-                })
-                .ToArray();
-
-            foreach (var (abstractType, concreteType) in repositories)
-            {
-                services.AddTransient(abstractType, concreteType);
-            }
+            services.Scan(scan => scan
+                .FromAssemblyOf<IMongoDbRepository>()
+                .AddClasses(classes => classes.AssignableTo<IMongoDbRepository>())
+                .AsImplementedInterfaces()
+                .WithTransientLifetime()
+            );
 
             return services;
         }
-        
-        private class ConfiguredOnce
-        {
-            public bool HasRun { get; set; }
-        }
-        
+
         private static void ConfigureOnce()
         {
             lock (_configuredOnce)
@@ -75,6 +58,11 @@ namespace CleanArchitectureTemplate.Infrastructure
                 SerializationConventions.SetConventions();
                 _configuredOnce.HasRun = true;
             }
+        }
+
+        private class ConfiguredOnce
+        {
+            public bool HasRun { get; set; }
         }
     }
 }
