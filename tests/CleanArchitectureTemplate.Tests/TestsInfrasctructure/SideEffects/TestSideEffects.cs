@@ -5,12 +5,14 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
 {
     public class TestSideEffects
     {
+        private readonly Guid _testIdentifier;
         private readonly IMongoDatabase _database;
 
-        public TestSideEffects(IMongoDatabase database)
+        public TestSideEffects(Guid testIdentifier, IMongoDatabase database)
         {
+            _testIdentifier = testIdentifier;
             _database = database;
-            OverFileSystem = new FilesSideEffects();
+            OverFileSystem = new FilesSideEffects(_testIdentifier);
         }
 
         public FilesSideEffects OverFileSystem { get; }

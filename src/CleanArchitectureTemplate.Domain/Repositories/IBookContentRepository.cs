@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using CleanArchitectureTemplate.Domain.ValueObjects;
 
 namespace CleanArchitectureTemplate.Domain.Repositories
 {
-    public interface IBookContentRepository
-    
+    public interface IBookContentRepository : IRepository
+
     {
-        LibraryPath StoreBookContent(byte[] bookContent, Guid requestGalacticRegistryId);
+        Task<LibraryPath> StoreBookContent(ReadOnlyMemory<byte> bookContent, Guid galacticRegistryId,
+            CancellationToken cancellationToken);
     }
 }

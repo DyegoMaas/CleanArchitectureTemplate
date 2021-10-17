@@ -1,4 +1,8 @@
-﻿using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
+﻿using CleanArchitectureTemplate.Domain.Repositories;
+using CleanArchitectureTemplate.Domain.Services;
+using CleanArchitectureTemplate.Infrastructure.FileSystemStorage;
+using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
+using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Repositories;
 using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +14,8 @@ namespace CleanArchitectureTemplate.Infrastructure
         {
             services.AddMongoDb();
             services.AddRepositories();
+            services.AddSingleton<IBookContentRepository, BookContentRepository>();
+            services.AddSingleton<IUpdateBookReferenceService, BookMetadataRepository>();
             
             return services;
         }
@@ -34,12 +40,18 @@ namespace CleanArchitectureTemplate.Infrastructure
         {
             services.Scan(scan => scan
                 .FromAssemblyOf<IMongoDbRepository>()
-                .AddClasses(classes => classes.AssignableTo<IMongoDbRepository>())
+                .AddClasses(classes => classes.AssignableTo<IRepository>())
                 .AsMatchingInterface()
                 .WithTransientLifetime()
             );
 
             return services;
         }
+
+        // public static IServiceCollection AddServices(this IServiceCollection services)
+        // {
+        //     services.AddSingleton<IBookStorageConfiguration, BookStorageConfigurationEnv>();
+        //     return services;
+        // }
     }
 }

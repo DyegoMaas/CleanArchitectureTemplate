@@ -5,10 +5,12 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
 {
     public class TestSeeder
     {
+        private readonly Guid _testIdentifier;
         private readonly IMongoDatabase _database;
 
-        public TestSeeder(IMongoDatabase database)
+        public TestSeeder(Guid testIdentifier, IMongoDatabase database)
         {
+            _testIdentifier = testIdentifier;
             _database = database;
         }
 

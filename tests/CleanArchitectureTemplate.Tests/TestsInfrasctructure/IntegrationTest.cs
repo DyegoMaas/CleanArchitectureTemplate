@@ -1,22 +1,29 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using CleanArchitectureTemplate.Application;
 using CleanArchitectureTemplate.Application.Common.Behaviors;
+using CleanArchitectureTemplate.Domain.Repositories;
+using CleanArchitectureTemplate.Domain.Services;
 using CleanArchitectureTemplate.Infrastructure;
+using CleanArchitectureTemplate.Infrastructure.FileSystemStorage;
 using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
+using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Repositories;
 using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Serialization;
+using CleanArchitectureTemplate.Tests.TestsInfrasctructure.Configuration;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
 namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
 {
-    public abstract class IntegrationTest: IDisposable
+    public abstract class IntegrationTest : IDisposable
     {
         private readonly ServiceCollection _serviceCollection;
         private readonly Lazy<IServiceProvider> _serviceProvider;
+        private readonly Guid _testIdentifier;
         private InMemoryTestDatabase _inMemoryTestDatabase;
 
         private static IServiceProvider GetServiceProvider(IServiceCollection serviceCollection)
@@ -36,13 +43,15 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
 
         protected IntegrationTest()
         {
-            _serviceCollection = new ServiceCollection();
+            _testIdentifier = Guid.NewGuid();
+
+            _serviceCollection = new ServiceCollection(); // TODO is it necessary to assign it to a field?
             InstallDependencies(_serviceCollection);
             
             _serviceProvider = new Lazy<IServiceProvider>(() => GetServiceProvider(_serviceCollection));
             
-            SideEffects = new TestSideEffects(database: null);
-            Seed = new TestSeeder(database: null);
+            SideEffects = new TestSideEffects(_testIdentifier, database: null);
+            Seed = new TestSeeder(_testIdentifier, database: null);
         }
 
         private void InstallDependencies(IServiceCollection services)
@@ -54,18 +63,21 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
             services.AddSingleton(provider => new TestMongoDatabaseFactory(_inMemoryTestDatabase).GetDatabase());
+            services.AddSingleton<IBookContentRepository, BookContentRepository>();
+            services.AddSingleton<IUpdateBookReferenceService, BookMetadataRepository>();
+            services.AddScoped<IBookStorageConfiguration>(_serviceProvider => new TestBookStorageConfiguration(_testIdentifier));
         }
 
         protected void RebuildDatabase()
         {
-            _inMemoryTestDatabase = new InMemoryTestDatabase(databaseName: Guid.NewGuid().ToString());
+            _inMemoryTestDatabase = new InMemoryTestDatabase(databaseName: _testIdentifier.ToString());
             _inMemoryTestDatabase.Drop();
 
             var database = _inMemoryTestDatabase.GetDatabase();
-            SideEffects = new TestSideEffects(database);
-            Seed = new TestSeeder(database);
+            SideEffects = new TestSideEffects(_testIdentifier, database);
+            Seed = new TestSeeder(_testIdentifier, database);
         }
-        
+
         [DebuggerStepThrough]
         protected Task<TResponse> Handle<TRequest, TResponse>(TRequest request)
             where TRequest : IRequest<TResponse>
@@ -102,7 +114,7 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
 
             private static MongoClient GetMongoClient(string connectionString) => new(connectionString);
         }
-        
+
         private class TestMongoDatabaseFactory : IMongoDatabaseFactory
         {
             private readonly InMemoryTestDatabase _inMemoryTestDatabase;
@@ -118,6 +130,14 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
         public void Dispose()
         {
             _inMemoryTestDatabase.Drop();
+            CleanFileSystem();
+        }
+
+        private void CleanFileSystem()
+        {
+            var bookStorageLocation = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, _testIdentifier.ToString()));
+            if (bookStorageLocation.Exists)
+                bookStorageLocation.Delete(recursive: true);
         }
     }
 }

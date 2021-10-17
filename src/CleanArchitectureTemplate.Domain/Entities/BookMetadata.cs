@@ -27,10 +27,5 @@ namespace CleanArchitectureTemplate.Domain.Entities
                 GalacticRegistryId = Guid.NewGuid() // TODO this ID should be created by an external generator
             };
         }
-
-        public void StoreFileLocation(LibraryPath libraryPath)
-        {
-            ContentLocation = libraryPath.Path;
-        }
     }
 }
