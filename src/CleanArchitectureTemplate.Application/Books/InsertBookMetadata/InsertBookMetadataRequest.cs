@@ -38,7 +38,7 @@ namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
                 name: request.Name,
                 description: request.Description,
                 author: request.Author,
-                origin: new GalacticBody(request.Origin.Planet, request.Origin.System),
+                origin: new GalacticMember(request.Origin.Planet, request.Origin.System),
                 publisher: request.Publisher,
                 galacticYear: request.GalacticYear
             );

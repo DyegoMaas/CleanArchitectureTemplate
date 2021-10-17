@@ -8,12 +8,12 @@ namespace CleanArchitectureTemplate.Domain.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string Author { get; set; }
-        public GalacticBody Origin { get; set; }
+        public GalacticMember Origin { get; set; }
         public string Publisher { get; set; }
         public int GalacticYear { get; set; }
         public Guid GalacticRegistryId { get; set; }
         
-        public static Book Create(string name, string description, string author, GalacticBody origin, string publisher, int galacticYear)
+        public static Book Create(string name, string description, string author, GalacticMember origin, string publisher, int galacticYear)
         {
             return new Book
             {
