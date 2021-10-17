@@ -7,7 +7,7 @@ using MediatR;
 
 namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
 {
-    public class AddBookRequest : IRequest<AddBookResponse>
+    public class InsertBookMetadataRequest : IRequest<InsertBookMetadataResponse>
     {
         public string Name { get; set; }
         public string Author { get; set; }
@@ -23,16 +23,16 @@ namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
         }
     }
 
-    public class AddBookRequestHandler : IRequestHandler<AddBookRequest, AddBookResponse>
+    public class InsertBookMetadataRequestHandler : IRequestHandler<InsertBookMetadataRequest, InsertBookMetadataResponse>
     {
         private readonly IBooksRepository _booksRepository;
 
-        public AddBookRequestHandler(IBooksRepository booksRepository)
+        public InsertBookMetadataRequestHandler(IBooksRepository booksRepository)
         {
             _booksRepository = booksRepository;
         }
 
-        public async Task<AddBookResponse> Handle(AddBookRequest request, CancellationToken cancellationToken)
+        public async Task<InsertBookMetadataResponse> Handle(InsertBookMetadataRequest request, CancellationToken cancellationToken)
         {
             var book = Book.Create(
                 name: request.Name,
@@ -44,7 +44,7 @@ namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
             );
             await _booksRepository.AddBook(book);
             
-            return new AddBookResponse
+            return new InsertBookMetadataResponse
             {
                 GalacticRegistryId = book.GalacticRegistryId
             };

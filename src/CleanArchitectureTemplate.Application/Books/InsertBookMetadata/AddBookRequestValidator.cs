@@ -2,7 +2,7 @@
 
 namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
 {
-    public class AddBookRequestValidator : AbstractValidator<AddBookRequest>
+    public class AddBookRequestValidator : AbstractValidator<InsertBookMetadataRequest>
     {
         public AddBookRequestValidator()
         {

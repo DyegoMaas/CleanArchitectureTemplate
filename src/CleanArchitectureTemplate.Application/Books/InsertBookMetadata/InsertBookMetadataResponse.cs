@@ -2,7 +2,7 @@
 
 namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
 {
-    public class AddBookResponse
+    public class InsertBookMetadataResponse
     {
         public Guid GalacticRegistryId { get; set; }
     }
