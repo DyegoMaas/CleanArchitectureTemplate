@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using CleanArchitectureTemplate.Application.Books.InsertBookMetadata;
 using CleanArchitectureTemplate.Domain.Entities;
+using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using FluentAssertions;
 using Xunit;
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CleanArchitectureTemplate.Application.Books.SetBookContent;
 using CleanArchitectureTemplate.Domain.Entities;
 using CleanArchitectureTemplate.Domain.ValueObjects;
+using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using FluentAssertions;
 using MediatR;
 using Xunit;

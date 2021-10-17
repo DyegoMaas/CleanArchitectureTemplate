@@ -13,7 +13,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Tests
+namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
 {
     public abstract class IntegrationTest: IDisposable
     {
