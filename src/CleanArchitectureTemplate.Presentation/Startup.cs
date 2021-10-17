@@ -1,11 +1,13 @@
 using CleanArchitectureTemplate.Application;
 using CleanArchitectureTemplate.Domain;
 using CleanArchitectureTemplate.Infrastructure;
+using CleanArchitectureTemplate.Presentation.Common.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace CleanArchitectureTemplate.Presentation
@@ -26,7 +28,11 @@ namespace CleanArchitectureTemplate.Presentation
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",
-                    new OpenApiInfo {Title = "CleanArchitectureTemplate.Presentation", Version = "v1"});
+                    new OpenApiInfo
+                    {
+                        Title = "CleanArchitectureTemplate.Presentation", 
+                        Version = "v1"
+                    });
             });
 
             services.AddDomain();
@@ -35,7 +41,7 @@ namespace CleanArchitectureTemplate.Presentation
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -44,6 +50,8 @@ namespace CleanArchitectureTemplate.Presentation
                 app.UseSwaggerUI(c =>
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "CleanArchitectureTemplate.Presentation v1"));
             }
+            
+            app.UseGlobalExceptionHandler(loggerFactory);
 
             app.UseHttpsRedirection();
 
