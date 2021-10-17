@@ -9,9 +9,9 @@ using Xunit;
 
 namespace CleanArchitectureTemplate.Tests.Application
 {
-    public class AddBookRequestTests : IntegrationTest
+    public class InsertBookMetadataRequestTests : IntegrationTest
     {
-        public AddBookRequestTests()
+        public InsertBookMetadataRequestTests()
         {
             RebuildDatabase();
         }
