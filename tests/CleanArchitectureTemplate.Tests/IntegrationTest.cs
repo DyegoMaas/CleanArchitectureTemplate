@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using CleanArchitectureTemplate.Application;
 using CleanArchitectureTemplate.Application.Common.Behaviors;
 using CleanArchitectureTemplate.Infrastructure;
 using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
@@ -42,11 +43,15 @@ namespace CleanArchitectureTemplate.Tests
             _serviceProvider = new Lazy<IServiceProvider>(() => GetServiceProvider(_serviceCollection));
         }
 
-        private void InstallDependencies(ServiceCollection services)
+        private void InstallDependencies(IServiceCollection services)
         {
             services.AddMediatR(typeof(RequestValidationBehavior<,>).Assembly);
-            services.AddSingleton(provider => new TestMongoDatabaseFactory(_inMemoryTestDatabase).GetDatabase());
+            services.AddFluentValidation();
             services.AddRepositories();
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
+            services.AddSingleton(provider => new TestMongoDatabaseFactory(_inMemoryTestDatabase).GetDatabase());
         }
 
         protected void RebuildDatabase()

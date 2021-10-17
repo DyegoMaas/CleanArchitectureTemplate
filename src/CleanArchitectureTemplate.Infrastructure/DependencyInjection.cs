@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Reflection;
-using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
+﻿using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
 using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 
