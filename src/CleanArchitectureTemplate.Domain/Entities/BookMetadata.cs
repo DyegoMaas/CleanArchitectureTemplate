@@ -3,7 +3,7 @@ using CleanArchitectureTemplate.Domain.ValueObjects;
 
 namespace CleanArchitectureTemplate.Domain.Entities
 {
-    public class Book : Entity
+    public class BookMetadata : Entity
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -12,10 +12,11 @@ namespace CleanArchitectureTemplate.Domain.Entities
         public string Publisher { get; set; }
         public int GalacticYear { get; set; }
         public Guid GalacticRegistryId { get; set; }
-        
-        public static Book Create(string name, string description, string author, GalacticMember origin, string publisher, int galacticYear)
+        public string ContentLocation { get; set; }
+
+        public static BookMetadata Create(string name, string description, string author, GalacticMember origin, string publisher, int galacticYear)
         {
-            return new Book
+            return new BookMetadata
             {
                 Name = name,
                 Description = description,

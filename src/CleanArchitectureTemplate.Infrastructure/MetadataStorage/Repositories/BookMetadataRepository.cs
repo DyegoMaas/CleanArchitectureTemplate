@@ -6,15 +6,15 @@ using MongoDB.Driver;
 
 namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Repositories
 {
-    public class BooksRepository : MongoDbRepository<Book>, IBooksRepository
+    public class BookMetadataRepository : MongoDbRepository<BookMetadata>, IBookMetadataRepository
     {
-        public BooksRepository(IMongoDatabase mongoDatabase) : base(mongoDatabase)
+        public BookMetadataRepository(IMongoDatabase mongoDatabase) : base(mongoDatabase)
         {
         }
 
-        public Task AddBook(Book book)
+        public Task AddBook(BookMetadata bookMetadata)
         {
-            return Collection.InsertOneAsync(book);
+            return Collection.InsertOneAsync(bookMetadata);
         }
     }
 }

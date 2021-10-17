@@ -3,8 +3,8 @@ using CleanArchitectureTemplate.Domain.Entities;
 
 namespace CleanArchitectureTemplate.Domain.Repositories
 {
-    public interface IBooksRepository
+    public interface IBookMetadataRepository
     {
-        public Task AddBook(Book book);
+        public Task AddBook(BookMetadata bookMetadata);
     }
 }

@@ -6,14 +6,13 @@ using MongoDB.Bson.Serialization.Serializers;
 
 namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Mappings
 {
-    public class BookMapping : MongoDbEntityMapping<Book>
+    public class BookMetadataMapping : MongoDbEntityMapping<BookMetadata>
     {
         public override string CollectionName => "books";
         
-        protected override void RegisterBsonClassMap(BsonClassMap<Book> classMap)
+        protected override void RegisterBsonClassMap(BsonClassMap<BookMetadata> classMap)
         {
             classMap.MapMember(x => x.GalacticRegistryId).SetElementName("galactic_registry_id")
-                // .SetSerializer(new GuidSerializer(BsonType.String))
                 .SetIsRequired(true);
             classMap.MapMember(x => x.Name).SetElementName("name").SetIsRequired(true);
             classMap.MapMember(x => x.Description).SetElementName("description").SetIsRequired(true);

@@ -25,16 +25,16 @@ namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
 
     public class InsertBookMetadataRequestHandler : IRequestHandler<InsertBookMetadataRequest, InsertBookMetadataResponse>
     {
-        private readonly IBooksRepository _booksRepository;
+        private readonly IBookMetadataRepository _bookMetadataRepository;
 
-        public InsertBookMetadataRequestHandler(IBooksRepository booksRepository)
+        public InsertBookMetadataRequestHandler(IBookMetadataRepository bookMetadataRepository)
         {
-            _booksRepository = booksRepository;
+            _bookMetadataRepository = bookMetadataRepository;
         }
 
         public async Task<InsertBookMetadataResponse> Handle(InsertBookMetadataRequest request, CancellationToken cancellationToken)
         {
-            var book = Book.Create(
+            var book = BookMetadata.Create(
                 name: request.Name,
                 description: request.Description,
                 author: request.Author,
@@ -42,7 +42,7 @@ namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
                 publisher: request.Publisher,
                 galacticYear: request.GalacticYear
             );
-            await _booksRepository.AddBook(book);
+            await _bookMetadataRepository.AddBook(book);
             
             return new InsertBookMetadataResponse
             {
