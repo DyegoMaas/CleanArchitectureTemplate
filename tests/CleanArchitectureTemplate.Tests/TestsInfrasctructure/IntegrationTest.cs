@@ -15,7 +15,6 @@ using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Serialization;
 using CleanArchitectureTemplate.Tests.TestsInfrasctructure.Configuration;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Driver;
 
 namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
 {
@@ -85,46 +84,6 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
             var scope = _serviceProvider.Value.CreateScope();
             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
             return mediator.Send(request, CancellationToken.None);
-        }
-
-        private class InMemoryTestDatabase
-        {
-            public const string LocalhostInMemoryConnectionString = "mongodb://localhost:27018"; // TODO load from configuration
-            public string DatabaseName { get; }
-
-            public InMemoryTestDatabase(string databaseName)
-            {
-                DatabaseName = databaseName;
-            }
-
-            public void Drop()
-            {
-                var mongoClient = GetMongoClient(LocalhostInMemoryConnectionString);
-                mongoClient.DropDatabase(DatabaseName);
-            }
-            public IMongoDatabase GetDatabase()
-            {
-                var mongoClient = GetMongoClient(LocalhostInMemoryConnectionString);
-                var mongoDatabase = mongoClient.GetDatabase(DatabaseName);
-                
-                MappingLoader.EnsureIndices(mongoDatabase);
-
-                return mongoDatabase;
-            }
-
-            private static MongoClient GetMongoClient(string connectionString) => new(connectionString);
-        }
-
-        private class TestMongoDatabaseFactory : IMongoDatabaseFactory
-        {
-            private readonly InMemoryTestDatabase _inMemoryTestDatabase;
-
-            public TestMongoDatabaseFactory(InMemoryTestDatabase inMemoryTestDatabase)
-            {
-                _inMemoryTestDatabase = inMemoryTestDatabase;
-            }
-
-            public IMongoDatabase GetDatabase() => _inMemoryTestDatabase.GetDatabase();
         }
 
         public void Dispose()
