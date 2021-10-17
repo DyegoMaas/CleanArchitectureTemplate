@@ -35,17 +35,17 @@ namespace CleanArchitectureTemplate.Tests.Application.InsertBookMetadata
                 GalacticYear = 10_001
             };
 
-            Func<Task> addBook = async () =>
+            Func<Task> insertBookMetadata = async () =>
                 await Handle<InsertBookMetadataRequest, InsertBookMetadataResponse>(addBookRequest);
 
-            addBook.Should().ThrowAsync<ValidationException>().Result.Which
+            insertBookMetadata.Should().ThrowAsync<ValidationException>().Result.Which
                 .Errors.Should().HaveCount(6);
         }
 
         [Fact]
         public async Task Should_validate_that_origin_exists()
         {
-            var addBookRequest = new InsertBookMetadataRequest
+            var request = new InsertBookMetadataRequest
             {
                 Name = "Fictional Book Name",
                 Description =
@@ -56,10 +56,10 @@ namespace CleanArchitectureTemplate.Tests.Application.InsertBookMetadata
                 GalacticYear = 10_001
             };
 
-            Func<Task> addBook = async () =>
-                await Handle<InsertBookMetadataRequest, InsertBookMetadataResponse>(addBookRequest);
+            Func<Task> insertBookMetadata = async () =>
+                await Handle<InsertBookMetadataRequest, InsertBookMetadataResponse>(request);
 
-            addBook.Should().ThrowAsync<ValidationException>().Result.Which
+            insertBookMetadata.Should().ThrowAsync<ValidationException>().Result.Which
                 .Errors.Should().HaveCount(1)
                 .And
                 .Subject.WithErrorMessage("Origin is required");

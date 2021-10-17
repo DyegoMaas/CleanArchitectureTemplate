@@ -14,7 +14,7 @@ namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
 
         public RequestValidationTests()
         {
-            RebuildDatabase();
+            RebuildDatabase(); // TODO should not be necessary for tests that do not use the database 
         }
 
         [Fact]
@@ -25,9 +25,9 @@ namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
                 GalacticRegistryId = Guid.NewGuid(),
                 Content = Array.Empty<byte>()
             };
-            Func<Task> addBook = async () => await Handle<SetBookContentRequest, SetBookContentResponse>(requestWithNoContent);
+            Func<Task> setBookContent = async () => await Handle<SetBookContentRequest, SetBookContentResponse>(requestWithNoContent);
 
-            addBook.Should().ThrowAsync<ValidationException>().Result.Which
+            setBookContent.Should().ThrowAsync<ValidationException>().Result.Which
                 .Errors.Should().HaveCount(1);
         }
     }
