@@ -71,8 +71,8 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
             where TRequest : IRequest<TResponse>
         {
             var scope = _serviceProvider.Value.CreateScope();
-            var mediator = scope.ServiceProvider.GetService<IMediator>();
-            return mediator!.Send(request, CancellationToken.None);
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+            return mediator.Send(request, CancellationToken.None);
         }
 
         private class InMemoryTestDatabase
