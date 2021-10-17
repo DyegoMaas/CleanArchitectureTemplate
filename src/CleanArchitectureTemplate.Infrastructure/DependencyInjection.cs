@@ -14,6 +14,7 @@ namespace CleanArchitectureTemplate.Infrastructure
         {
             services.AddMongoDb();
             services.AddRepositories();
+            services.AddSingleton<IBookStorageConfiguration, BookStorageConfigurationEnv>();
             services.AddSingleton<IBookContentRepository, BookContentRepository>();
             services.AddSingleton<IUpdateBookReferenceService, BookMetadataRepository>();
             
@@ -47,11 +48,5 @@ namespace CleanArchitectureTemplate.Infrastructure
 
             return services;
         }
-
-        // public static IServiceCollection AddServices(this IServiceCollection services)
-        // {
-        //     services.AddSingleton<IBookStorageConfiguration, BookStorageConfigurationEnv>();
-        //     return services;
-        // }
     }
 }
