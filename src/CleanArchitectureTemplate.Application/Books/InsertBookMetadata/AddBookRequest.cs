@@ -5,7 +5,7 @@ using CleanArchitectureTemplate.Domain.Repositories;
 using CleanArchitectureTemplate.Domain.ValueObjects;
 using MediatR;
 
-namespace CleanArchitectureTemplate.Application.Books.AddBook
+namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
 {
     public class AddBookRequest : IRequest<AddBookResponse>
     {

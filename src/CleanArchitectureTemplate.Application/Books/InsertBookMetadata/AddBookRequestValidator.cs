@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace CleanArchitectureTemplate.Application.Books.AddBook
+namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
 {
     public class AddBookRequestValidator : AbstractValidator<AddBookRequest>
     {

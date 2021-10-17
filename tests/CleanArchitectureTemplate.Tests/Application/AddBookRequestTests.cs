@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Application.Books.AddBook;
+using CleanArchitectureTemplate.Application.Books.InsertBookMetadata;
 using CleanArchitectureTemplate.Domain.Entities;
 using FluentAssertions;
 using FluentValidation;

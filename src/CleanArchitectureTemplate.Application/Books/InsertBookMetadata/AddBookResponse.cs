@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CleanArchitectureTemplate.Application.Books.AddBook
+namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
 {
     public class AddBookResponse
     {
