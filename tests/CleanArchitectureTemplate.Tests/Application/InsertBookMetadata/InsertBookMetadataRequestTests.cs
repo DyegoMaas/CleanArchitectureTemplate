@@ -7,7 +7,7 @@ using FluentValidation;
 using FluentValidation.TestHelper;
 using Xunit;
 
-namespace CleanArchitectureTemplate.Tests.Application
+namespace CleanArchitectureTemplate.Tests.Application.InsertBookMetadata
 {
     public class InsertBookMetadataRequestTests : IntegrationTest
     {
