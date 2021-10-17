@@ -6,8 +6,6 @@ namespace CleanArchitectureTemplate.Infrastructure
 {
     public static class DependencyInjection
     {
-        private static readonly ConfiguredOnce _configuredOnce = new();
-
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddMongoDb();
@@ -18,8 +16,6 @@ namespace CleanArchitectureTemplate.Infrastructure
 
         private static IServiceCollection AddMongoDb(this IServiceCollection services)
         {
-            ConfigureOnce();
-            
             services.AddSingleton<IMongoDatabaseFactory, MongoDatabaseFactory>();
             services.AddSingleton(serviceProvider =>
             {
@@ -44,23 +40,6 @@ namespace CleanArchitectureTemplate.Infrastructure
             );
 
             return services;
-        }
-
-        private static void ConfigureOnce()
-        {
-            lock (_configuredOnce)
-            {
-                if (_configuredOnce.HasRun)
-                    return;
-
-                SerializationConventions.SetConventions();
-                _configuredOnce.HasRun = true;
-            }
-        }
-
-        private class ConfiguredOnce
-        {
-            public bool HasRun { get; set; }
         }
     }
 }
