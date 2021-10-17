@@ -28,6 +28,7 @@ namespace CleanArchitectureTemplate.Tests
         }
 
         protected TestSideEffects SideEffects { get; private set; }
+        protected TestSeeder Seed { get; private set; }
 
         static IntegrationTest()
         {
@@ -41,6 +42,9 @@ namespace CleanArchitectureTemplate.Tests
             InstallDependencies(_serviceCollection);
             
             _serviceProvider = new Lazy<IServiceProvider>(() => GetServiceProvider(_serviceCollection));
+            
+            SideEffects = new TestSideEffects(database: null);
+            Seed = new TestSeeder(database: null);
         }
 
         private void InstallDependencies(IServiceCollection services)
@@ -61,6 +65,7 @@ namespace CleanArchitectureTemplate.Tests
 
             var database = _inMemoryTestDatabase.GetDatabase();
             SideEffects = new TestSideEffects(database);
+            Seed = new TestSeeder(database);
         }
         
         [DebuggerStepThrough]
@@ -99,34 +104,6 @@ namespace CleanArchitectureTemplate.Tests
 
             private static MongoClient GetMongoClient(string connectionString) => new(connectionString);
         }
-
-        protected class TestSideEffects
-        {
-            private readonly IMongoDatabase _database;
-
-            public TestSideEffects(IMongoDatabase database)
-            {
-                _database = database;
-            }
-
-            public IEnumerable<TDocument> GetDocuments<TDocument>()
-            {
-                var collection = GetCollectionFor<TDocument>();
-                return collection.Find(x => true).ToEnumerable();
-            }
-
-            public TDocument GetDocument<TDocument>(Expression<Func<TDocument, bool>> filter)
-            {
-                var collection = GetCollectionFor<TDocument>();
-                return collection.Find(filter).FirstOrDefault();
-            }
-
-            private IMongoCollection<TDocument> GetCollectionFor<TDocument>()
-            {
-                var collectionName = CollectionNamesHelper.CollectionNameFor<TDocument>();
-                return _database.GetCollection<TDocument>(collectionName);
-            }
-        }
         
         private class TestMongoDatabaseFactory : IMongoDatabaseFactory
         {
@@ -143,6 +120,102 @@ namespace CleanArchitectureTemplate.Tests
         public void Dispose()
         {
             _inMemoryTestDatabase.Drop();
+        }
+    }
+    
+    public class TestSideEffects
+    {
+        private readonly IMongoDatabase _database;
+
+        public TestSideEffects(IMongoDatabase database)
+        {
+            _database = database;
+        }
+
+        public FilesSideEffects OverFiles { get; }
+
+        public DatabaseDocumentsSideEffects OverDatabaseDocuments
+        {
+            get
+            {
+                if (_database is null)
+                    throw new InvalidOperationException("Database was not initialized. Use `RebuildDatabase()` method to prepare the test database");
+                
+                return new DatabaseDocumentsSideEffects(_database);
+            }
+        }
+    }
+
+    public class DatabaseDocumentsSideEffects
+    {
+        private readonly IMongoDatabase _database;
+
+        public DatabaseDocumentsSideEffects(IMongoDatabase database)
+        {
+            _database = database;
+        }
+        
+        public IEnumerable<TDocument> GetDocuments<TDocument>()
+        {
+            var collection = GetCollectionFor<TDocument>();
+            return collection.Find(x => true).ToEnumerable();
+        }
+
+        public TDocument GetDocument<TDocument>(Expression<Func<TDocument, bool>> filter)
+        {
+            var collection = GetCollectionFor<TDocument>();
+            return collection.Find(filter).FirstOrDefault();
+        }
+
+        private IMongoCollection<TDocument> GetCollectionFor<TDocument>()
+        {
+            var collectionName = CollectionNamesHelper.CollectionNameFor<TDocument>();
+            return _database.GetCollection<TDocument>(collectionName);
+        }
+    }
+
+    public class FilesSideEffects
+    {
+        public byte[] LoadAsBinary(string path)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class TestSeeder
+    {
+        private readonly IMongoDatabase _database;
+
+        public TestSeeder(IMongoDatabase database)
+        {
+            _database = database;
+        }
+
+        public DatabaseDocumentSeeder DatabaseDocument
+        {
+            get
+            {
+                if (_database is null)
+                    throw new InvalidOperationException("Database was not initialized. Use `RebuildDatabase()` method to prepare the test database");
+                
+                return new DatabaseDocumentSeeder(_database);
+            }
+        }
+    }
+
+    public class DatabaseDocumentSeeder
+    {
+        private readonly IMongoDatabase _database;
+
+        public DatabaseDocumentSeeder(IMongoDatabase database)
+        {
+            _database = database;
+        }
+
+        public void InsertDocument<TDocument>(TDocument document) 
+        {
+            var collectionName = CollectionNamesHelper.CollectionNameFor<TDocument>();
+            _database.GetCollection<TDocument>(collectionName).InsertOne(document);
         }
     }
 }

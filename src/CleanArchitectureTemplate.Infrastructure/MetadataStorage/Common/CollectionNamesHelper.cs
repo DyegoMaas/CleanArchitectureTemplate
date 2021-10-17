@@ -6,6 +6,7 @@ namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common
 {
     public static class CollectionNamesHelper
     {
+        // TODO implement tests for non entity document types (what should be behavior in these cases?)
         public static string CollectionNameFor<TDocument>()
         {
             var mappingTypes = Assembly.GetExecutingAssembly()

@@ -42,7 +42,7 @@ namespace CleanArchitectureTemplate.Tests.Application.InsertBookMetadata
         }
 
         [Fact]
-        public async Task Should_validate_origin()
+        public async Task Should_validate_that_origin_exists()
         {
             var addBookRequest = new InsertBookMetadataRequest
             {

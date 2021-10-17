@@ -4,5 +4,11 @@
     {
         public string Planet { get; init; }
         public string System { get; init; }
+
+        public GalacticBody(string planet, string system)
+        {
+            Planet = planet;
+            System = system;
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace CleanArchitectureTemplate.Tests.Application.InsertBookMetadata
 
             var response = await Handle<InsertBookMetadataRequest, InsertBookMetadataResponse>(addBookRequest);
 
-            var book = SideEffects.GetDocument<Book>(x => x.GalacticRegistryId == response.GalacticRegistryId);
+            var book = SideEffects.OverDatabaseDocuments.GetDocument<Book>(x => x.GalacticRegistryId == response.GalacticRegistryId);
             book.Should().BeEquivalentTo(addBookRequest);
         }
     }

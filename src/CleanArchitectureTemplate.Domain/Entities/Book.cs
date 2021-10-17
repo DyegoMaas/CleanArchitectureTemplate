@@ -23,7 +23,7 @@ namespace CleanArchitectureTemplate.Domain.Entities
                 Origin = origin,
                 Publisher = publisher,
                 GalacticYear = galacticYear,
-                GalacticRegistryId = Guid.NewGuid()
+                GalacticRegistryId = Guid.NewGuid() // TODO this ID should be created by an external generator
             };
         }
     }
