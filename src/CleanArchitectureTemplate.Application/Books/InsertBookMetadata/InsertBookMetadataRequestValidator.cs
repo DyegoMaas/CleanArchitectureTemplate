@@ -2,9 +2,9 @@
 
 namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata
 {
-    public class AddBookRequestValidator : AbstractValidator<InsertBookMetadataRequest>
+    public class InsertBookMetadataRequestValidator : AbstractValidator<InsertBookMetadataRequest>
     {
-        public AddBookRequestValidator()
+        public InsertBookMetadataRequestValidator()
         {
             RuleFor(x => x.Author)
                 .NotEmpty().WithMessage("Author is required");
