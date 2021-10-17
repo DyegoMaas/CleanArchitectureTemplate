@@ -35,7 +35,7 @@ namespace CleanArchitectureTemplate.Infrastructure
             services.Scan(scan => scan
                 .FromAssemblyOf<IMongoDbRepository>()
                 .AddClasses(classes => classes.AssignableTo<IMongoDbRepository>())
-                .AsImplementedInterfaces()
+                .AsMatchingInterface()
                 .WithTransientLifetime()
             );
 

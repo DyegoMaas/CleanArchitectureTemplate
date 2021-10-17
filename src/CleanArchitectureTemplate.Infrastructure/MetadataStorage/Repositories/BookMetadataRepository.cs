@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CleanArchitectureTemplate.Domain.Entities;
 using CleanArchitectureTemplate.Domain.Repositories;
 using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
@@ -15,6 +16,11 @@ namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Repositories
         public Task AddBook(BookMetadata bookMetadata)
         {
             return Collection.InsertOneAsync(bookMetadata);
+        }
+
+        public Task<BookMetadata> GetBookAsync(Guid galacticRegistryId)
+        {
+            return Collection.Find(x => x.GalacticRegistryId == galacticRegistryId).FirstOrDefaultAsync();
         }
     }
 }

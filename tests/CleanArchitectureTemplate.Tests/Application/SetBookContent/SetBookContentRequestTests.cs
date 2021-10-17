@@ -6,22 +6,19 @@ using CleanArchitectureTemplate.Domain.Entities;
 using CleanArchitectureTemplate.Domain.ValueObjects;
 using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using FluentAssertions;
-using MediatR;
 using Xunit;
 
 namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
 {
     public class SetBookContentRequestTests : IntegrationTest
     {
+        private readonly Guid _bookRegistryId;
+
         public SetBookContentRequestTests()
         {
             RebuildDatabase();
-        }
-
-        [Fact]
-        public async Task Should_create_a_new_book_in_the_file_system_when_it_does_not_exist()
-        {
-            var book = Book.Create(
+            
+            var bookMetadata = BookMetadata.Create(
                 name: "Fictional Book Name",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent justo nulla, pellentesque lacinia enim et, dictum finibus augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi fringilla vestibulum ipsum. Nam auctor maximus magna, ac posuere odio dignissim at. Cras et pharetra nibh. Donec laoreet pellentesque finibus. Maecenas dictum elit vel eros semper pharetra. Sed commodo imperdiet dolor vitae fringilla. Aenean sit amet fermentum sem, id posuere sem. Phasellus tempus urna quis vulputate semper. Donec vestibulum sem ipsum, eget tincidunt mauris malesuada eget. Duis lacus nisl, facilisis ac erat vel, euismod tempus sapien. Pellentesque vitae sodales nisi. Sed feugiat justo tincidunt vehicula accumsan. Vestibulum vestibulum fringilla libero, id venenatis nibh venenatis ac. Pellentesque faucibus ut ex porttitor interdum.",
                 author: "Evangeline Mustache",
@@ -29,22 +26,38 @@ namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
                 publisher: "Solar System Publishing Inc.",
                 galacticYear: 10_001
             );
-            Seed.DatabaseDocument.InsertDocument(book);
-            
-            var request = new SetBookContentRequest
-            {
-                BookId = book.GalacticRegistryId,
-                Content = ToBinaryArray(FakeBook.Content)
-            };
-            await Handle<SetBookContentRequest, Unit>(request);
+            Seed.DatabaseDocument.InsertDocument(bookMetadata);
 
-            var file = SideEffects.OverFileSystem.LoadFileAsBinary(PathFor(book.GalacticRegistryId));
-            file.Should().BeEquivalentTo(request.Content);
+            _bookRegistryId = bookMetadata.GalacticRegistryId;
         }
 
-        private string PathFor(Guid bookGalacticRegistryId)
+        [Fact]
+        public async Task Should_save_the_book_content_in_the_file_system_when_it_does_not_exist()
         {
-            throw new NotImplementedException();
+            var request = new SetBookContentRequest
+            {
+                GalacticRegistryId = _bookRegistryId,
+                Content = ToBinaryArray(FakeBook.Content)
+            };
+            var response = await Handle<SetBookContentRequest, SetBookContentResponse>(request);
+
+            var fileContent = SideEffects.OverFileSystem.LoadFileAsBinary(response.ContentFileLocation);
+            fileContent.Should().BeEquivalentTo(request.Content);
+        }
+        
+        [Fact]
+        public async Task Should_fill_the_content_file_location_in_the_book_metadata()
+        {
+            var request = new SetBookContentRequest
+            {
+                GalacticRegistryId = _bookRegistryId,
+                Content = ToBinaryArray(FakeBook.Content)
+            };
+            var response = await Handle<SetBookContentRequest, SetBookContentResponse>(request);
+
+            var metadata = SideEffects.OverDatabaseDocuments
+                .GetDocument<BookMetadata>(x => x.GalacticRegistryId == request.GalacticRegistryId);
+            metadata.ContentLocation.Should().Be(response.ContentFileLocation);
         }
 
         private static byte[] ToBinaryArray(string content) => Encoding.UTF8.GetBytes(content);

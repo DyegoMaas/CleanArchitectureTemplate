@@ -1,21 +1,36 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using CleanArchitectureTemplate.Domain.Repositories;
 using MediatR;
 
 namespace CleanArchitectureTemplate.Application.Books.SetBookContent
 {
-    public class SetBookContentRequest : IRequest<Unit>
+    public class SetBookContentRequest : IRequest<SetBookContentResponse>
     {
-        public Guid BookId { get; set; }
+        public Guid GalacticRegistryId { get; set; }
         public byte[] Content { get; set; }
     }
 
-    public class SetBookContentRequestHandler : IRequestHandler<SetBookContentRequest, Unit>
+    public class SetBookContentRequestHandler : IRequestHandler<SetBookContentRequest, SetBookContentResponse>
     {
-        public Task<Unit> Handle(SetBookContentRequest request, CancellationToken cancellationToken)
+        private readonly IBookMetadataRepository _bookMetadataRepository;
+        private readonly IBookContentRepository _bookContentRepository;
+
+        public SetBookContentRequestHandler(IBookMetadataRepository bookMetadataRepository, IBookContentRepository bookContentRepository)
         {
-            throw new NotImplementedException();
+            _bookMetadataRepository = bookMetadataRepository;
+            _bookContentRepository = bookContentRepository;
+        }
+
+        public async Task<SetBookContentResponse> Handle(SetBookContentRequest request, CancellationToken cancellationToken)
+        {
+            var libraryPath = _bookContentRepository.StoreBookContent(request.Content, request.GalacticRegistryId);
+
+            var bookMetadata = await _bookMetadataRepository.GetBookAsync(request.GalacticRegistryId);
+            bookMetadata.StoreFileLocation(libraryPath);
+
+            return new SetBookContentResponse(libraryPath.Path);
         }
     }
 }
