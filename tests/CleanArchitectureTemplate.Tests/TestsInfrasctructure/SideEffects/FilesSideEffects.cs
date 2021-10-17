@@ -4,7 +4,7 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
 {
     public class FilesSideEffects
     {
-        public byte[] LoadAsBinary(string path)
+        public byte[] LoadFileAsBinary(string path)
         {
             throw new NotImplementedException();
         }

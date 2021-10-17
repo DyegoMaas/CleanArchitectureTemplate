@@ -10,10 +10,10 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
         public TestSideEffects(IMongoDatabase database)
         {
             _database = database;
-            OverFiles = new FilesSideEffects();
+            OverFileSystem = new FilesSideEffects();
         }
 
-        public FilesSideEffects OverFiles { get; }
+        public FilesSideEffects OverFileSystem { get; }
 
         public DatabaseDocumentsSideEffects OverDatabaseDocuments
         {

@@ -38,7 +38,7 @@ namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
             };
             await Handle<SetBookContentRequest, Unit>(request);
 
-            var file = SideEffects.OverFiles.LoadAsBinary(PathFor(book.GalacticRegistryId));
+            var file = SideEffects.OverFileSystem.LoadFileAsBinary(PathFor(book.GalacticRegistryId));
             file.Should().BeEquivalentTo(request.Content);
         }
 
