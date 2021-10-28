@@ -11,6 +11,7 @@ namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Serialization
         public static void SetConventions()
         {
             BsonSerializer.RegisterSerializer(typeof(DateTime), new MongoUtcDateTimeSerializer());
+            
             BsonDefaults.GuidRepresentationMode = GuidRepresentationMode.V3;
             BsonSerializer.RegisterSerializer(typeof(Guid), new GuidSerializer(GuidRepresentation.Standard));
 

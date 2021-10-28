@@ -26,11 +26,12 @@ namespace CleanArchitectureTemplate.Infrastructure
             services.AddSingleton<IMongoDatabaseFactory, MongoDatabaseFactory>();
             services.AddSingleton(serviceProvider =>
             {
+                SerializationConventions.SetConventions();
+
                 var mongoDatabaseFactory = serviceProvider.GetRequiredService<IMongoDatabaseFactory>();
                 var mongoDatabase = mongoDatabaseFactory.GetDatabase();
                 MappingLoader.LoadClassMappings();
                 MappingLoader.EnsureIndices(mongoDatabase);
-                SerializationConventions.SetConventions();
                 return mongoDatabase;
             });
             

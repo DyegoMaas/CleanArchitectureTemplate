@@ -35,7 +35,6 @@ namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common
         
         public static void EnsureIndices(IMongoDatabase mongoDatabase)
         {
-           
             foreach (var mappingType in MappingTypes)
             {
                 var mongoMapping = (IMongoDbMapping)Activator.CreateInstance(mappingType);
