@@ -41,7 +41,7 @@ namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
             };
             var response = await Handle<SetBookContentRequest, SetBookContentResponse>(request);
 
-            var fileContent = SideEffects.OverFileSystem.LoadFileAsBinary(response.ContentFileLocation);
+            var fileContent = SideEffects.FromFileSystem().LoadFileAsBinary(response.ContentFileLocation);
             fileContent.Should().BeEquivalentTo(request.Content);
         }
         
@@ -55,8 +55,7 @@ namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
             };
             var response = await Handle<SetBookContentRequest, SetBookContentResponse>(request);
 
-            var metadata = SideEffects.OverDatabaseDocuments
-                .GetDocument<BookMetadata>(x => x.GalacticRegistryId == request.GalacticRegistryId);
+            var metadata = SideEffects.FromDatabase().GetDocument<BookMetadata>(x => x.GalacticRegistryId == request.GalacticRegistryId);
             metadata.ContentLocation.Should().Be(response.ContentFileLocation);
         }
 

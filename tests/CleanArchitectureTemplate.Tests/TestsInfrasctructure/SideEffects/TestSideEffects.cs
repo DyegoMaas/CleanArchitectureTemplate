@@ -7,25 +7,23 @@ namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
     {
         private readonly Guid _testIdentifier;
         private readonly IMongoDatabase _database;
+        private readonly FilesSideEffects _filesSideEffects;
 
         public TestSideEffects(Guid testIdentifier, IMongoDatabase database)
         {
             _testIdentifier = testIdentifier;
             _database = database;
-            OverFileSystem = new FilesSideEffects(_testIdentifier);
+            _filesSideEffects = new FilesSideEffects(_testIdentifier);
         }
 
-        public FilesSideEffects OverFileSystem { get; }
+        public FilesSideEffects FromFileSystem() => _filesSideEffects;
 
-        public DatabaseDocumentsSideEffects OverDatabaseDocuments
+        public DatabaseDocumentsSideEffects FromDatabase()
         {
-            get
-            {
-                if (_database is null)
-                    throw new InvalidOperationException("Database was not initialized. Use `RebuildDatabase()` method to prepare the test database");
-                
-                return new DatabaseDocumentsSideEffects(_database);
-            }
+            if (_database is null)
+                throw new InvalidOperationException("Database was not initialized. Use `RebuildDatabase()` method to prepare the test database");
+            
+            return new DatabaseDocumentsSideEffects(_database);
         }
     }
 }
