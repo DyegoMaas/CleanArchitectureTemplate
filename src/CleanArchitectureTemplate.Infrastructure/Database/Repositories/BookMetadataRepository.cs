@@ -4,10 +4,10 @@ using CleanArchitectureTemplate.Domain.Entities;
 using CleanArchitectureTemplate.Domain.Repositories;
 using CleanArchitectureTemplate.Domain.Services;
 using CleanArchitectureTemplate.Domain.ValueObjects;
-using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
+using CleanArchitectureTemplate.Infrastructure.Database.Common;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Repositories
+namespace CleanArchitectureTemplate.Infrastructure.Database.Repositories
 {
     public class BookMetadataRepository : MongoDbRepository<BookMetadata>, IBookMetadataRepository, IUpdateBookReferenceService
     {

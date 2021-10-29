@@ -1,9 +1,9 @@
 ﻿using CleanArchitectureTemplate.Domain.Repositories;
 using CleanArchitectureTemplate.Domain.Services;
-using CleanArchitectureTemplate.Infrastructure.FileSystemStorage;
-using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
-using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Repositories;
-using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Serialization;
+using CleanArchitectureTemplate.Infrastructure.Database.Common;
+using CleanArchitectureTemplate.Infrastructure.Database.Common.Serialization;
+using CleanArchitectureTemplate.Infrastructure.Database.Repositories;
+using CleanArchitectureTemplate.Infrastructure.FileSystem;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitectureTemplate.Infrastructure

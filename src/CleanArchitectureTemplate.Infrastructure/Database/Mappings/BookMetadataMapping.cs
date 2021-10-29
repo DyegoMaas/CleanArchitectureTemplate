@@ -1,10 +1,8 @@
 ﻿using CleanArchitectureTemplate.Domain.Entities;
-using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
-using MongoDB.Bson;
+using CleanArchitectureTemplate.Infrastructure.Database.Common;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;
 
-namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Mappings
+namespace CleanArchitectureTemplate.Infrastructure.Database.Mappings
 {
     public class BookMetadataMapping : MongoDbEntityMapping<BookMetadata>
     {

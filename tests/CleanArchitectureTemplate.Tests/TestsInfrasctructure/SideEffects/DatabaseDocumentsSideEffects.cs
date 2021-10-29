@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
+using CleanArchitectureTemplate.Infrastructure.Database.Common;
 using MongoDB.Driver;
 
 namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure

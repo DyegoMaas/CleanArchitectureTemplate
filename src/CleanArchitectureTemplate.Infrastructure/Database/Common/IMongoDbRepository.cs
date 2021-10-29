@@ -1,4 +1,4 @@
-﻿namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common
+﻿namespace CleanArchitectureTemplate.Infrastructure.Database.Common
 {
     public interface IMongoDbRepository
     {

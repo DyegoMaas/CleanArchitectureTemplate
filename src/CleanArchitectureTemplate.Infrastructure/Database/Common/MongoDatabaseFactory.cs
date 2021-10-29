@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common
+namespace CleanArchitectureTemplate.Infrastructure.Database.Common
 {
     public class MongoDatabaseFactory : IMongoDatabaseFactory
     {

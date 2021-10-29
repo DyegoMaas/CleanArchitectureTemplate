@@ -1,8 +1,8 @@
 ﻿using CleanArchitectureTemplate.Domain.Entities;
-using CleanArchitectureTemplate.Infrastructure.MetadataStorage.Common;
+using CleanArchitectureTemplate.Infrastructure.Database.Common;
 using MongoDB.Bson.Serialization;
 
-namespace CleanArchitectureTemplate.Infrastructure.MetadataStorage.Mappings
+namespace CleanArchitectureTemplate.Infrastructure.Database.Mappings
 {
     public class EntityEntityMapping : MongoDbEntityMapping<Entity>
     {

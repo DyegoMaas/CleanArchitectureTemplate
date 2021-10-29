@@ -1,4 +1,4 @@
-﻿namespace CleanArchitectureTemplate.Infrastructure.FileSystemStorage
+﻿namespace CleanArchitectureTemplate.Infrastructure.FileSystem
 {
     public interface IBookStorageConfiguration
     {
