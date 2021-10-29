@@ -13,7 +13,9 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "BOOKS_RELATIVE_PATH": "books"
+        "BOOKS_RELATIVE_PATH": "books",
+        "MONGO_CONNECTION_STRING": "mongodb://localhost:27018",
+        "MONGO_DATABASE": "clean-architecture-template"
       }
     }
   }
