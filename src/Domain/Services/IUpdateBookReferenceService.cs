@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Domain.ValueObjects;
+using Domain.ValueObjects;
 
-namespace CleanArchitectureTemplate.Domain.Services
+namespace Domain.Services
 {
     public interface IUpdateBookReferenceService
     {

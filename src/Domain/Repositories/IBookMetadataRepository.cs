@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Domain.Entities;
+using Domain.Entities;
 
-namespace CleanArchitectureTemplate.Domain.Repositories
+namespace Domain.Repositories
 {
     public interface IBookMetadataRepository : IRepository
     {

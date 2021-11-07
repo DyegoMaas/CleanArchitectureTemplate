@@ -1,5 +1,5 @@
-﻿using CleanArchitectureTemplate.Domain.Entities;
-using CleanArchitectureTemplate.Infrastructure.Database.Common;
+﻿using CleanArchitectureTemplate.Infrastructure.Database.Common;
+using Domain.Entities;
 using MongoDB.Bson.Serialization;
 
 namespace CleanArchitectureTemplate.Infrastructure.Database.Mappings

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Domain.ValueObjects;
+using Domain.ValueObjects;
 
-namespace CleanArchitectureTemplate.Domain.Repositories
+namespace Domain.Repositories
 {
     public interface IBookContentRepository : IRepository
 

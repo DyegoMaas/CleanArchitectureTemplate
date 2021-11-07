@@ -1,7 +1,7 @@
 ﻿using System;
-using CleanArchitectureTemplate.Domain.ValueObjects;
+using Domain.ValueObjects;
 
-namespace CleanArchitectureTemplate.Domain.Entities
+namespace Domain.Entities
 {
     public class BookMetadata : Entity
     {

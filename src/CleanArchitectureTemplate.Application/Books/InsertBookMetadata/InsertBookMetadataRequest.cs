@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Domain.Entities;
-using CleanArchitectureTemplate.Domain.Repositories;
-using CleanArchitectureTemplate.Domain.ValueObjects;
+using Domain.Entities;
+using Domain.Repositories;
+using Domain.ValueObjects;
 using MediatR;
 
 namespace CleanArchitectureTemplate.Application.Books.InsertBookMetadata

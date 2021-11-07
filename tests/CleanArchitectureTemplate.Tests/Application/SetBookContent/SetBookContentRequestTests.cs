@@ -2,9 +2,9 @@
 using System.Text;
 using System.Threading.Tasks;
 using CleanArchitectureTemplate.Application.Books.SetBookContent;
-using CleanArchitectureTemplate.Domain.Entities;
-using CleanArchitectureTemplate.Domain.ValueObjects;
 using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
+using Domain.Entities;
+using Domain.ValueObjects;
 using FluentAssertions;
 using Xunit;
 

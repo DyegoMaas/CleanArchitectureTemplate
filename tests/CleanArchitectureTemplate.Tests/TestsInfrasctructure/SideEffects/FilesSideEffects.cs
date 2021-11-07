@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
+namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.SideEffects
 {
     public class FilesSideEffects
     {

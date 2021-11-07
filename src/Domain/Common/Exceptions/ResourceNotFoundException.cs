@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CleanArchitectureTemplate.Domain.Common.Exceptions
+namespace Domain.Common.Exceptions
 {
     public class ResourceNotFoundException : Exception, IBusinessException
     {

@@ -1,5 +1,5 @@
-﻿using CleanArchitectureTemplate.Domain.ValueObjects;
-using CleanArchitectureTemplate.Infrastructure.Database.Common;
+﻿using CleanArchitectureTemplate.Infrastructure.Database.Common;
+using Domain.ValueObjects;
 using MongoDB.Bson.Serialization;
 
 namespace CleanArchitectureTemplate.Infrastructure.Database.Mappings

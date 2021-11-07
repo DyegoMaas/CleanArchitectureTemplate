@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Domain.Repositories;
-using CleanArchitectureTemplate.Domain.Services;
+using Domain.Repositories;
+using Domain.Services;
 using MediatR;
 
 namespace CleanArchitectureTemplate.Application.Books.SetBookContent

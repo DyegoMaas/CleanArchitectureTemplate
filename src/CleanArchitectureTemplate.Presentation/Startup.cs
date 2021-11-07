@@ -1,7 +1,7 @@
 using CleanArchitectureTemplate.Application;
-using CleanArchitectureTemplate.Domain;
 using CleanArchitectureTemplate.Infrastructure;
 using CleanArchitectureTemplate.Presentation.Common.Extensions;
+using Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

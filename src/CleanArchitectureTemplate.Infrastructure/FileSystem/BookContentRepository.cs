@@ -2,8 +2,8 @@
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Domain.Repositories;
-using CleanArchitectureTemplate.Domain.ValueObjects;
+using Domain.Repositories;
+using Domain.ValueObjects;
 
 namespace CleanArchitectureTemplate.Infrastructure.FileSystem
 {

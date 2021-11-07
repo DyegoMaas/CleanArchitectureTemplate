@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using CleanArchitectureTemplate.Infrastructure.Database.Common;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
+namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.SideEffects
 {
     public class DatabaseDocumentsSideEffects
     {

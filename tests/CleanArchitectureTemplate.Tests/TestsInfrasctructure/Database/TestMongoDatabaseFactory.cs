@@ -1,7 +1,7 @@
 ﻿using CleanArchitectureTemplate.Infrastructure.Database.Common;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
+namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.Database
 {
     public class TestMongoDatabaseFactory : IMongoDatabaseFactory
     {

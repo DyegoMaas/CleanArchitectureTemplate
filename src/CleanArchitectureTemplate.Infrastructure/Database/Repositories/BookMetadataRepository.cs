@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Domain.Entities;
-using CleanArchitectureTemplate.Domain.Repositories;
-using CleanArchitectureTemplate.Domain.Services;
-using CleanArchitectureTemplate.Domain.ValueObjects;
 using CleanArchitectureTemplate.Infrastructure.Database.Common;
+using Domain.Entities;
+using Domain.Repositories;
+using Domain.Services;
+using Domain.ValueObjects;
 using MongoDB.Driver;
 
 namespace CleanArchitectureTemplate.Infrastructure.Database.Repositories

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitectureTemplate.Domain.ValueObjects
+﻿namespace Domain.ValueObjects
 {
     public class LibraryPath
     {
