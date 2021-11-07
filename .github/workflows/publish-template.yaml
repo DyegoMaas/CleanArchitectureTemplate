@@ -23,7 +23,7 @@ jobs:
             "classifications": [ "Clean Architecture", "Solution", "C#9", "MongoDB ],
             "identity": "DyegoMaas.CleanArchitecture.Template",
             "name": "Solution template applying Clean Architecture",
-            "shortName": "ac-solution",
+            "shortName": "ca-solution",
             "tags": {
               "language": "C#",
               "type": "project"
