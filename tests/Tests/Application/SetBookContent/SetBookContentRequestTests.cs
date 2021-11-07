@@ -2,13 +2,13 @@
 using System.Text;
 using System.Threading.Tasks;
 using Application.Books.SetBookContent;
-using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using Domain.Entities;
 using Domain.ValueObjects;
 using FluentAssertions;
+using Tests.TestsInfrasctructure;
 using Xunit;
 
-namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
+namespace Tests.Application.SetBookContent
 {
     public class SetBookContentRequestTests : IntegrationTest
     {

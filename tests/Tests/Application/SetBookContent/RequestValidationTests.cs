@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Books.SetBookContent;
-using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using FluentAssertions;
 using FluentValidation;
+using Tests.TestsInfrasctructure;
 using Xunit;
 
-namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
+namespace Tests.Application.SetBookContent
 {
     public class RequestValidationTests : IntegrationTest
     {

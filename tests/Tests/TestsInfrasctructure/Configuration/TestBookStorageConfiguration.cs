@@ -2,7 +2,7 @@
 using System.IO;
 using Infrastructure.FileSystem;
 
-namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.Configuration
+namespace Tests.TestsInfrasctructure.Configuration
 {
     internal class TestBookStorageConfiguration : IBookStorageConfiguration
     {

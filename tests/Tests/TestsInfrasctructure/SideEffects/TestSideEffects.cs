@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.SideEffects
+namespace Tests.TestsInfrasctructure.SideEffects
 {
     public class TestSideEffects
     {

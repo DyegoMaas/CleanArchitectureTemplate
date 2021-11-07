@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
 using Application.Books.InsertBookMetadata;
-using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using Domain.Entities;
 using FluentAssertions;
+using Tests.TestsInfrasctructure;
 using Xunit;
 
-namespace CleanArchitectureTemplate.Tests.Application.InsertBookMetadata
+namespace Tests.Application.InsertBookMetadata
 {
     public class InsertBookMetadataRequestTests : IntegrationTest
     {

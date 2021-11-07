@@ -10,16 +10,16 @@ using Infrastructure.Database.Common;
 using Infrastructure.Database.Common.Serialization;
 using Infrastructure.Database.Repositories;
 using Infrastructure.FileSystem;
-using CleanArchitectureTemplate.Tests.TestsInfrasctructure.Configuration;
-using CleanArchitectureTemplate.Tests.TestsInfrasctructure.Database;
-using CleanArchitectureTemplate.Tests.TestsInfrasctructure.Seeding;
-using CleanArchitectureTemplate.Tests.TestsInfrasctructure.SideEffects;
 using Domain.Repositories;
 using Domain.Services;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Tests.TestsInfrasctructure.Configuration;
+using Tests.TestsInfrasctructure.Database;
+using Tests.TestsInfrasctructure.Seeding;
+using Tests.TestsInfrasctructure.SideEffects;
 
-namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure
+namespace Tests.TestsInfrasctructure
 {
     public abstract class IntegrationTest : IDisposable
     {

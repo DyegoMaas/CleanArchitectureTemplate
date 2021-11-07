@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.Seeding
+namespace Tests.TestsInfrasctructure.Seeding
 {
     public class TestSeeder
     {

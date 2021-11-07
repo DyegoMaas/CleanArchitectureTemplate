@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Database.Common;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.Database
+namespace Tests.TestsInfrasctructure.Database
 {
     public class InMemoryTestDatabase
     {

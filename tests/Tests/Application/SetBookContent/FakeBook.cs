@@ -1,4 +1,4 @@
-﻿namespace CleanArchitectureTemplate.Tests.Application.SetBookContent
+﻿namespace Tests.Application.SetBookContent
 {
     public static class FakeBook
     {
