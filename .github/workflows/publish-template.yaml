@@ -38,4 +38,4 @@ jobs:
             cp -r "./$item" "./working/templates/ca-solution/$item"
           done
 
-          ls -lha ./working
+          ls -Rlha ./working
