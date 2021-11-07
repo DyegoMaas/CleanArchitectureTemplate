@@ -1,4 +1,4 @@
-using CleanArchitectureTemplate.Application;
+using Application;
 using CleanArchitectureTemplate.Infrastructure;
 using CleanArchitectureTemplate.Presentation.Common.Extensions;
 using Domain;

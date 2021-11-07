@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Application\CleanArchitectureTemplate.Application.csproj" />
+      <ProjectReference Include="..\..\src\Application\Application.csproj" />
       <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj" />
     </ItemGroup>
 

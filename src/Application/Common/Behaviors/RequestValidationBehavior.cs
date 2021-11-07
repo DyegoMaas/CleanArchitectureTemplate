@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 
-namespace CleanArchitectureTemplate.Application.Common.Behaviors
+namespace Application.Common.Behaviors
 {
     public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>

@@ -2,8 +2,8 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Application.Books.InsertBookMetadata;
-using CleanArchitectureTemplate.Application.Books.SetBookContent;
+using Application.Books.InsertBookMetadata;
+using Application.Books.SetBookContent;
 using CleanArchitectureTemplate.Presentation.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

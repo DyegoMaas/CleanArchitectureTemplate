@@ -5,7 +5,7 @@ using Domain.Repositories;
 using Domain.Services;
 using MediatR;
 
-namespace CleanArchitectureTemplate.Application.Books.SetBookContent
+namespace Application.Books.SetBookContent
 {
     public class SetBookContentRequest : IRequest<SetBookContentResponse>
     {

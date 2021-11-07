@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Application.Books.InsertBookMetadata;
+using Application.Books.InsertBookMetadata;
 using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using Domain.Entities;
 using FluentAssertions;

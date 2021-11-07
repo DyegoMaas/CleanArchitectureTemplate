@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Application.Books.SetBookContent;
+using Application.Books.SetBookContent;
 using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using FluentAssertions;
 using FluentValidation;

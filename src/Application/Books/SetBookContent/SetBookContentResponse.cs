@@ -1,4 +1,4 @@
-﻿namespace CleanArchitectureTemplate.Application.Books.SetBookContent
+﻿namespace Application.Books.SetBookContent
 {
     public class SetBookContentResponse
     {

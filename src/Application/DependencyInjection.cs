@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Reflection;
-using CleanArchitectureTemplate.Application.Common.Behaviors;
+using Application.Common.Behaviors;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitectureTemplate.Application
+namespace Application
 {
     public static class DependencyInjection
     {

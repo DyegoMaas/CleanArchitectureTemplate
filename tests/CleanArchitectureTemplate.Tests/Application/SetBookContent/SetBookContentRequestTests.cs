@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Application.Books.SetBookContent;
+using Application.Books.SetBookContent;
 using CleanArchitectureTemplate.Tests.TestsInfrasctructure;
 using Domain.Entities;
 using Domain.ValueObjects;
