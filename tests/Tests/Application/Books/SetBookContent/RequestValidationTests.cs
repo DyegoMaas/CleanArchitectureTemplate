@@ -6,7 +6,7 @@ using FluentValidation;
 using Tests.TestsInfrasctructure;
 using Xunit;
 
-namespace Tests.Application.SetBookContent
+namespace Tests.Application.Books.SetBookContent
 {
     public class RequestValidationTests : IntegrationTest
     {

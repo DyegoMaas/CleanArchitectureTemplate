@@ -5,7 +5,7 @@ using FluentAssertions;
 using Tests.TestsInfrasctructure;
 using Xunit;
 
-namespace Tests.Application.InsertBookMetadata
+namespace Tests.Application.Books.InsertBookMetadata
 {
     public class InsertBookMetadataRequestTests : IntegrationTest
     {

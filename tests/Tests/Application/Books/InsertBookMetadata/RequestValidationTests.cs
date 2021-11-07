@@ -7,7 +7,7 @@ using FluentValidation.TestHelper;
 using Tests.TestsInfrasctructure;
 using Xunit;
 
-namespace Tests.Application.InsertBookMetadata
+namespace Tests.Application.Books.InsertBookMetadata
 {
     public class RequestValidationTests : IntegrationTest
     {

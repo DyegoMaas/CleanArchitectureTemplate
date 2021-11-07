@@ -8,7 +8,7 @@ using FluentAssertions;
 using Tests.TestsInfrasctructure;
 using Xunit;
 
-namespace Tests.Application.SetBookContent
+namespace Tests.Application.Books.SetBookContent
 {
     public class SetBookContentRequestTests : IntegrationTest
     {

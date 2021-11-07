@@ -1,4 +1,4 @@
-﻿namespace Tests.Application.SetBookContent
+﻿namespace Tests.Application.Books.SetBookContent
 {
     public static class FakeBook
     {
