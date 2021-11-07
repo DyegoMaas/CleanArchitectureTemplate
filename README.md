@@ -4,9 +4,7 @@
 ![tests](https://github.com/DyegoMaas/CleanArchitectureTemplate/workflows/build/badge.svg)
 [![codecov](https://codecov.io/gh/DyegoMaas/CleanArchitectureTemplate/branch/main/graph/badge.svg?token=IPBG3BP2D8)](https://codecov.io/gh/DyegoMaas/CleanArchitectureTemplate)
 
-**This repository aims to be as easy to replicate as possible.** It should turn the process of creating new applications based in this template a no-brainer, very smooth.
-
-For the replication process, it will work in tandem with another of my OSS projects, [Replicante](https://github.com/DyegoMaas/replicante), which may receive upgrades in the near future to better support replication of remote repositories.
+This repository is heavily inspired by Jason Taylor's [Clean Architecture Template](https://github.com/jasontaylordev/CleanArchitecture), with several changes that aim to to make it easier to use and more accessible to all kinds of developers.
 
 ## Premises
 
@@ -22,7 +20,7 @@ This template will serve as a test subject for better understanding the concept 
 
 ## Examples
 
-This project comes packed with examples which implement services for a fictional dystopian library called Encyclopedia Galactica.
+This project comes packed with examples which implement services for a fictional library.
 
 The project specification can be found in the [docs here](docs/ProjectSpecifications.md).
 
