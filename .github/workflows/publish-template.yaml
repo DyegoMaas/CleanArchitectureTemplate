@@ -1,4 +1,4 @@
-name: build
+name: publish-template
 on:
   workflow_dispatch:
   push:
