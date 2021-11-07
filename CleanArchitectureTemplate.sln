@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{1B90665D-DE21-435F-BEC6-7F3045EA43E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.Presentation", "src\CleanArchitectureTemplate.Presentation\CleanArchitectureTemplate.Presentation.csproj", "{664BAFDB-8F56-446B-A680-A32E104A5950}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Presentation\Presentation.csproj", "{664BAFDB-8F56-446B-A680-A32E104A5950}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{822F859D-F7B0-4ADA-8C59-2438E3EC1919}"
 EndProject

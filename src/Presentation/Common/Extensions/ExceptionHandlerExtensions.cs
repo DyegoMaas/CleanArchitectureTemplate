@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitectureTemplate.Presentation.Common.Extensions
+namespace Presentation.Common.Extensions
 {
    public static class ExceptionHandlerExtension
    {

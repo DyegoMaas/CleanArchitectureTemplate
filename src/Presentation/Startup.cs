@@ -1,6 +1,6 @@
 using Application;
 using Infrastructure;
-using CleanArchitectureTemplate.Presentation.Common.Extensions;
+using Presentation.Common.Extensions;
 using Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace CleanArchitectureTemplate.Presentation
+namespace Presentation
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace CleanArchitectureTemplate.Presentation
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
-                        Title = "CleanArchitectureTemplate.Presentation", 
+                        Title = "Presentation", 
                         Version = "v1"
                     });
             });
@@ -48,7 +48,7 @@ namespace CleanArchitectureTemplate.Presentation
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "CleanArchitectureTemplate.Presentation v1"));
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Presentation v1"));
             }
             
             app.UseGlobalExceptionHandler(loggerFactory);

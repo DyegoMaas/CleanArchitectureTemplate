@@ -4,11 +4,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Books.InsertBookMetadata;
 using Application.Books.SetBookContent;
-using CleanArchitectureTemplate.Presentation.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Common;
 
-namespace CleanArchitectureTemplate.Presentation.Controllers
+namespace Presentation.Controllers
 {
     [Route("api/book-editing")]
     public class BookEditingController : ApiController

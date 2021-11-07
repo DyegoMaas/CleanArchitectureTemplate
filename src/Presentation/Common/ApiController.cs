@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitectureTemplate.Presentation.Common
+namespace Presentation.Common
 {
     [ApiController]
     [Route("api/[controller]")]
