@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CleanArchitectureTemplate.Infrastructure.FileSystem
+namespace Infrastructure.FileSystem
 {
     public class BookStorageConfigurationEnv : IBookStorageConfiguration
     {

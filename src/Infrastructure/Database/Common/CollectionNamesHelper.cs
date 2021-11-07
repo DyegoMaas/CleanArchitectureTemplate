@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace CleanArchitectureTemplate.Infrastructure.Database.Common
+namespace Infrastructure.Database.Common
 {
     public static class CollectionNamesHelper
     {

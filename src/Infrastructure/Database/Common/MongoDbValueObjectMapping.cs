@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Infrastructure.Database.Common
+namespace Infrastructure.Database.Common
 {
     public abstract class MongoDbValueObjectMapping<TValueObject> : IMongoDbMapping
     {

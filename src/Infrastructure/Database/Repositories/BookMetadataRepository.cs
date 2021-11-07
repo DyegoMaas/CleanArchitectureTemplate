@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Infrastructure.Database.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Domain.Services;
 using Domain.ValueObjects;
+using Infrastructure.Database.Common;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Infrastructure.Database.Repositories
+namespace Infrastructure.Database.Repositories
 {
     public class BookMetadataRepository : MongoDbRepository<BookMetadata>, IBookMetadataRepository, IUpdateBookReferenceService
     {

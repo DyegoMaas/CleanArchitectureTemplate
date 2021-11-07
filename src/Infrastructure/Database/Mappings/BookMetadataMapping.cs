@@ -1,8 +1,8 @@
-﻿using CleanArchitectureTemplate.Infrastructure.Database.Common;
-using Domain.Entities;
+﻿using Domain.Entities;
+using Infrastructure.Database.Common;
 using MongoDB.Bson.Serialization;
 
-namespace CleanArchitectureTemplate.Infrastructure.Database.Mappings
+namespace Infrastructure.Database.Mappings
 {
     public class BookMetadataMapping : MongoDbEntityMapping<BookMetadata>
     {

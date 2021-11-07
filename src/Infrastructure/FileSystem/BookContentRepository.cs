@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Domain.Repositories;
 using Domain.ValueObjects;
 
-namespace CleanArchitectureTemplate.Infrastructure.FileSystem
+namespace Infrastructure.FileSystem
 {
     public class BookContentRepository : IBookContentRepository
     {

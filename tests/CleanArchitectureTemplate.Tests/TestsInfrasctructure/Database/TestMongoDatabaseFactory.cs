@@ -1,4 +1,4 @@
-﻿using CleanArchitectureTemplate.Infrastructure.Database.Common;
+﻿using Infrastructure.Database.Common;
 using MongoDB.Driver;
 
 namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.Database

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using CleanArchitectureTemplate.Infrastructure.FileSystem;
+using Infrastructure.FileSystem;
 
 namespace CleanArchitectureTemplate.Tests.TestsInfrasctructure.Configuration
 {

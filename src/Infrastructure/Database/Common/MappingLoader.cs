@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Infrastructure.Database.Common
+namespace Infrastructure.Database.Common
 {
     public static class MappingLoader
     {

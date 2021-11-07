@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace CleanArchitectureTemplate.Infrastructure.Database.Common
+namespace Infrastructure.Database.Common
 {
     public interface IMongoDatabaseFactory
     {

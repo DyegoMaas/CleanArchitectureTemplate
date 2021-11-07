@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 
-namespace CleanArchitectureTemplate.Infrastructure.Database.Common.Serialization
+namespace Infrastructure.Database.Common.Serialization
 {
     public class MongoUtcDateTimeSerializer : DateTimeSerializer
     {

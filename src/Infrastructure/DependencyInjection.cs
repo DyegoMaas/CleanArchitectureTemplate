@@ -1,12 +1,12 @@
-﻿using CleanArchitectureTemplate.Infrastructure.Database.Common;
-using CleanArchitectureTemplate.Infrastructure.Database.Common.Serialization;
-using CleanArchitectureTemplate.Infrastructure.Database.Repositories;
-using CleanArchitectureTemplate.Infrastructure.FileSystem;
-using Domain.Repositories;
+﻿using Domain.Repositories;
 using Domain.Services;
+using Infrastructure.Database.Common;
+using Infrastructure.Database.Common.Serialization;
+using Infrastructure.Database.Repositories;
+using Infrastructure.FileSystem;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitectureTemplate.Infrastructure
+namespace Infrastructure
 {
     public static class DependencyInjection
     {

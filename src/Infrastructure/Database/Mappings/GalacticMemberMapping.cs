@@ -1,8 +1,8 @@
-﻿using CleanArchitectureTemplate.Infrastructure.Database.Common;
-using Domain.ValueObjects;
+﻿using Domain.ValueObjects;
+using Infrastructure.Database.Common;
 using MongoDB.Bson.Serialization;
 
-namespace CleanArchitectureTemplate.Infrastructure.Database.Mappings
+namespace Infrastructure.Database.Mappings
 {
     public class GalacticMemberMapping : MongoDbValueObjectMapping<GalacticMember>
     {

@@ -1,5 +1,5 @@
 using Application;
-using CleanArchitectureTemplate.Infrastructure;
+using Infrastructure;
 using CleanArchitectureTemplate.Presentation.Common.Extensions;
 using Domain;
 using Microsoft.AspNetCore.Builder;
