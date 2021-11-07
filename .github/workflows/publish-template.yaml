@@ -1,0 +1,44 @@
+name: build
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet: [ '5.0.x' ]
+    name: Dotnet ${{ matrix.dotnet }} build
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Calculate code coverage
+        run: |
+          echo "Building template folder structure"
+          mkdir -p ./working/templates/ca-solution/.template.config
+          cat <<EOT >> ./working/templates/ca-solution/.template.config/template.json
+          {
+            "$schema": "http://json.schemastore.org/template",
+            "author": "Dyego Maas",
+            "classifications": [ "Clean Architecture", "Solution", "C#9", "MongoDB ],
+            "identity": "DyegoMaas.CleanArchitecture.Template",
+            "name": "Solution template applying Clean Architecture",
+            "shortName": "ac-solution",
+            "tags": {
+              "language": "C#",
+              "type": "project"
+            }
+          }
+          EOT
+  
+          echo "Copying solution files"
+          $ITEMS_TO_COPY=('src' 'tests' 'Dockerfile' 'docker-compose.tests.yml')
+          for item in $ITEMS_TO_COPY
+          do
+            cp -r ./$item ./working/templates/ca-solution/$item
+          done
+
+          ls -lha ./working
